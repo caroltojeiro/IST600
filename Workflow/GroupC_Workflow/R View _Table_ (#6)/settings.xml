@@ -6,7 +6,13 @@
 <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
 </config>
 <config key="model">
-<entry key="script" type="xstring" value="fullyCleanDF &lt;- knime.in%%00010%%00010#####################%%00010# Gerenate a dataset by country%%00010####################%%00010#countryNPS &lt;- tapply(cleanDF$Likelihood_Recommend_H,cleanDF$GUEST_COUNTRY_R,  mean)%%00010countryNPS &lt;- tapply(fullyCleanDF$Likelihood_Recommend_H,fullyCleanDF$GUEST_COUNTRY_R,  mean)%%00010resNames &lt;- names(countryNPS)%%00010%%00010countryDF &lt;- data.frame(countryNPS, resNames)%%00010countryDF &lt;- countryDF[complete.cases(countryDF), ]%%00010countryDF$countryNPS &lt;- c(countryDF$countryNPS)%%00010countryDF$resNames &lt;- tolower(countryDF$resNames)%%00010%%00010knime.out &lt;- countryDF"/>
+<entry key="Image width" type="xint" value="640"/>
+<entry key="Image height" type="xint" value="640"/>
+<entry key="Image resolution" type="xstring" value="NA"/>
+<entry key="Image background color" type="xstring" value="#ffffff"/>
+<entry key="Text point size" type="xint" value="12"/>
+<config key="R settings">
+<entry key="script" type="xstring" value="countryDF &lt;- knime.in%%00010install.packages(&quot;ggplot2&quot;)%%00010library('ggplot2')%%00010##############%%00010#barchart of mean NPS by  country%%00010###############%%00010g &lt;- ggplot(countryDF, aes(x = resNames, y=countryNPS)) + geom_col() + ggtitle(&quot;NPS by Country&quot;) +  %%00010  xlab(&quot;Country&quot;) + ylab(&quot;Average&quot;) %%00010%%00010g &lt;- g + theme(axis.text.x = element_text(angle = 90, hjust = 1))%%00010g%%00010knime.out&lt;- g"/>
 <entry key="templateUUID" type="xstring" isnull="true" value=""/>
 <entry key="version" type="xstring" value="version 1.x"/>
 <entry key="Output non numbers (NaN, Inf, -Inf) as missing cells" type="xboolean" value="false"/>
@@ -14,10 +20,12 @@
 <entry key="sendBatchSize" type="xint" value="10000"/>
 <entry key="knimeInType" type="xstring" value="data.frame"/>
 </config>
+<entry key="Image type" type="xstring" value="PNG"/>
+</config>
 <entry key="customDescription" type="xstring" isnull="true" value=""/>
 <entry key="state" type="xstring" value="EXECUTED"/>
-<entry key="factory" type="xstring" value="org.knime.r.RSnippetNodeFactory"/>
-<entry key="node-name" type="xstring" value="R Snippet"/>
+<entry key="factory" type="xstring" value="org.knime.r.RViewNodeFactory"/>
+<entry key="node-name" type="xstring" value="R View (Table)"/>
 <entry key="node-bundle-name" type="xstring" value="KNIME R-Project nodes"/>
 <entry key="node-bundle-symbolic-name" type="xstring" value="org.knime.r"/>
 <entry key="node-bundle-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
@@ -27,20 +35,22 @@
 <entry key="node-feature-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
 <entry key="node-feature-version" type="xstring" value="3.5.1.v201712211140"/>
 <config key="factory_settings"/>
-<entry key="name" type="xstring" value="R Snippet"/>
+<entry key="name" type="xstring" value="R View (Table)"/>
 <entry key="hasContent" type="xboolean" value="true"/>
 <entry key="isInactive" type="xboolean" value="false"/>
 <config key="ports">
 <config key="port_1">
 <entry key="index" type="xint" value="1"/>
-<entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
-<entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
-<entry key="port_object_summary" type="xstring" value="Rows: 22, Cols: 2"/>
+<entry key="port_spec_class" type="xstring" value="org.knime.core.node.port.image.ImagePortObjectSpec"/>
+<entry key="port_object_class" type="xstring" value="org.knime.core.node.port.image.ImagePortObject"/>
+<entry key="port_object_summary" type="xstring" value="PNG Image 640 x 640 with 7 KB"/>
+<entry key="port_spec_location" type="xstring" value="spec/spec.zip"/>
+<entry key="port_object_location" type="xstring" value="object/portobject.zip"/>
 <entry key="port_dir_location" type="xstring" value="port_1"/>
 </config>
 </config>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="e858c8ec-fc4f-4f57-ad89-7e7987555e14"/>
+<entry key="file_store_id" type="xstring" value="e263f5c3-d4b1-4709-9ba0-6d2788fcde55"/>
 </config>
 </config>
